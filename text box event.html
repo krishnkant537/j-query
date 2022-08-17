@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation In Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $txtfname= /^([a-zA-Z]{2,20})/$;
+        var $txtlname= /^([a-zA-Z]{2,20})/$;
+        var $txtemailids= /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
+        var $txtcontactnumber= /^([0-9]{10})/$;
+
+
+
+        $(document).ready(function(){
+            var txtfirstnameflag=false, txtlastnameflag=false, txtcontactnoflag=false, txtemailidflag=false, txtmsgflag=false;
+
+			$("#txtfirstname").blur(function(){
+				$("#txtfirstnamevalidation").empty();
+				if($(this).val()=="" || $(this).val()==null)
+				{
+					$("#txtfirstnamevalidation").html("(*) First name required...");
+				}
+				else {
+					if(!$(this).val().match($txtfname))
+					{
+						$("#txtfirstnamevalidation").html("(*) Invalid First Name...");
+					}
+				}
+			});
+			$("#txtfirstname").keypress(function(e){
+
+			var flag=false;
+			$("#txtfirstnamevalidation").empty();
+			((e.which>=65 && e.which<=90)||(e.which>=97 && e.which<=122))
+				?flag=true
+				:(flag=false,$("txtfirstnamevalidation").html("Invalid Keypress..."))
+				return flag;
+
+			});
+			$("#txtfirstname").blur(function(){
+				$("#txtlastnamevalidation").empty();
+				if($(this).val()=="" || $(this).val()==null)
+				{
+					$("#txtlastnamevalidation").html("(*) Last name required...");
+				}
+				else {
+					if(!$(this).val().match($txtlname))
+					{
+						$("#txtlastnamevalidation").html("(*) Invalid Last Name...");
+					}
+				}
+				});
+
+				$("#txtlastname").keypress(function(e){
+
+				var flag=false;
+				$("#txtlastnamevalidation").empty();
+				((e.which>=65 && e.which<=90)||(e.which>=97 && e.which<=122))
+					?flag=true
+					:(flag=false,$("txtlastnamevalidation").html("Invalid Keypress..."))
+					return flag;
+
+				});
+
+
+			$("#txtemailid").blur(function(){
+				$("#txtemailidvalidation").empty();
+				if($(this).val()=="" || $(this).val()==null)
+				{
+					$("#txtemailidvalidation").html("(*) EmailId required...");
+				}
+				else {
+					if(!$(this).val().match($txtemailids))
+					{
+						$("#txtemailidvalidation").html("(*) Invalid Email Name...");
+					}
+				}
+			});
+
+			$("#txtcontactno").blur(function(){
+				$("#txtcontactnovalidation").empty();
+				if($(this).val()=="" || $(this).val()==null)
+				{
+					$("#txtcontactnovalidation").html("(*) Contact Number required...");
+				}
+				else {
+					if(!$(this).val().match($txtcontactnumber))
+					{
+						$("#txtcontactnovalidation").html("(*) Invalid Contact Number Name...");
+					}
+				}
+			});
+			
+			
+			$("#txtcontactno").keypress(function(e){
+
+			var flag=false;
+			$("#txtcontactnovalidation").empty();
+			((e.which>=65 && e.which<=90)||(e.which>=97 && e.which<=122))
+				?flag=true
+				:(flag=false,$("txtcontactnovalidation").html("Invalid Keypress..."))
+				return flag;
+
+			});
+
+
+
+
+			$("#txtmsg").blur(function(){
+				$("#txtnsgvalidation").empty();
+				if($(this).val()=="" || $(this).val()==null)
+			{
+				$("#txtmsgvalidation").html("(*)Massage Required... ")
+			}
+			else{
+				if($(this).val().length>3000)
+				{
+					$("#txtmsgvalidation").html("(*) Invalid Massage...")
+				}
+			}
+			
+			});
+		
+
+			$("#submit").click(function(){
+				
+				$("#txtfirstnamevalidation").empty();
+				if($("#txtfirstname").val()=="" || $("#txtfirstname").val()==null)
+				{
+					$("#txtfirstnamevalidation").html("(*) First name required...");
+					txtfirstnameflag=false;
+				}
+				else {
+					if(!$("#txtfirstname").val().match($txtfname))
+					{
+						$("#txtfirstnamevalidation").html("(*) Invalid First Name...");
+						txtfirstnameflag=false;
+						
+					}
+					else{
+						txtfirstnameflag=true;
+					}
+				}
+					
+					
+				
+
+				
+				$("#txtlastnamevalidation").empty();
+				if($("#txtlastname").val()=="" || $("#txtlastname").val()==null)
+				{
+					$("#txtlastnamevalidation").html("(*) Last name required...");
+					txtlastnameflag=false;
+				}
+				else {
+					if(!$("#txtlastname").val().match($txtlname))
+					{
+						$("#txtlastnamevalidation").html("(*) Invalid Last Name...");
+						txtlastnameflag=false;
+						
+					}
+					else{
+						txtlastnameflag=true;
+					}
+				}
+
+				
+				
+				$("#txtemailidvalidation").empty();
+				if($("#txtemailidname").val()=="" || $("#txtemailidname").val()==null)
+				{
+					$("#txtemailidvalidation").html("(*) Emailid required...");
+					txtemailidflag=false;
+				}
+				else {
+					if(!$(this).val().match($txtemailids))
+					{
+						$("#txtemailidvalidation").html("(*) Invalid Emailid...");
+						txtemailidflag=false;
+						
+					}
+					else{
+						txtemailidflag=true;
+					}
+				}
+
+				
+				$("#txtcontactnovalidation").empty();
+				if($("#txtcontactno").val()=="" || $("#txtcontactno").val()==null)
+				{
+					$("#txtcontactnodvalidation").html("(*) Contact Number required...");
+					txtcontactnoflag=false;
+				}
+				else {
+					if(!$(this).val().match($txtcontactnumber))
+					{
+						$("#txtcontactnovalidation").html("(*) Invalid Contact Number...");
+						txtcontactnoflag=false;
+						
+					}
+					else{
+						txtcontactnoflag=true;
+					}
+				}
+
+
+				
+				$("#txtmsgvalidation").empty();
+				if($("#txtmsg").val()=="" || $("#txtmsg").val()==null)
+				{
+					$("#txtmsgvalidation").html("(*) Massage required...");
+					txtcontactnoflag=false;
+				}
+				else {
+					if(!$("#txtmsg").val().length>3000)
+					{
+						$("#txtmsgvalidation").html("(*) Invalid massage...");
+						txtmsgflag=false;
+						
+					}
+					else{
+						txtmsgflag=true;
+					}
+				}
+				if(txtfirstnameflag==true && txtlastnameflag==true&& txtcontactnoflag==true && txtemailidflag==true && txtmsgflag==true)
+				{
+					alert("Form Submitted Successfully..!!");
+				}
+				else{
+					alert("Invalid Input...");
+				}
+			});
+		});	
+
+
+
+       
+    </script>
+    
+    <style type="text/css">
+    body{
+        background-color: #090221;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    small{
+        color: red;
+    }
+     button{
+        background-color: #090221;
+        color: #fff;
+        border-radius: 5px;
+     }
+
+</style>
+</head>
+<body>
+    <div  style="border-radius: 30px; height: 400px; width: 300px; background-color: #fff;" >
+        <center><h1>Validation</h1>        
+        <input type="text" id="txtfirstname" autofocus placeholder="Enter the First Name" maxlength="20">
+        <small id="txtfirstnamevalidation"></small>
+        <br><br>
+        <input type="text" id="txtlastname"  placeholder="Enter the Last Name" maxlength="20">
+        <small id="txtlastnamevalidation"></small>
+        <br><br>
+        <input type="text" id="txtemailid"  placeholder="Enter the email id" maxlength="20">
+        <small id="txtemailidvalidation"></small>
+        <br><br>
+        <input type="text" id="txtcontactno"  placeholder="Enter the contact number" maxlength="10">
+        <small id="txtcontactnovalidation"></small>
+        <br><br>
+        <textarea type="text" id="txtmsg" placeholder="Write a massage......." maxlength="200"  rows="4"></textarea>
+            <small id="textmsgvalidation"></small>
+        <br><br>
+        <button id="submit">Submit Here...</button>
+ 
+ 
+    </center>
+
+    </div>
+</body>
+</html>
